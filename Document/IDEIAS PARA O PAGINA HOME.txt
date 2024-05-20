@@ -1,0 +1,38 @@
+O que fazer na tela home?
+
+Fiz a tela inicial, mas ela precisa de mais coisas, pois só tem o header (com home about feedback e uma imagem de login para logar e cadastrar)
+sendo ABOUT (sobre o feedback dos usuários em relação ao site)
+sendo imagem (para fazer login )
+===========
+ao invés de ABOUT 
+pode ser 2 partes entenda o site ai dentro pode ster uma print de como vai ser a pagina de usuario cadastrado
+endless runner
+forum
+
+ter a sessao da ONU
+
+=== 
+acho que pode ter 
+1. Pagina Inicial
+só que ai ABOUT 
+PERGUNTAS:
+
+1. Ter uma sessao falando de mim Kohatsu.
+2. Qual o intuito do site e como foi criado?
+3. Qual relação o site tem com alguma ONU?
+
+no seu projeto mostre onde isso começou, como foi a evolução dessa intensidade e o quanto isso está presente na sua vida.
+
+RESPOSTAS:
+1.
+
+2. Qual o intuito do site?
+
+Como foi criado?
+KaizenZone é a junção de duas palavras sendo elas:
+	1. Kaizen: vem do conceito japonês que consiste em melhoria contínua, ou seja, em sentido numérico, 			melhorar 1% a cada dia.
+	2. Zone: Através do termo "Safezone" que é conhecido pelos jogadores de Fortnite, que traduzindo vira 			"zona segura", onde seria um local do mapa onde 
+
+3. Eu posso aproveitar e contextualizar o que é o Fortnite e qual a relação dele com a ONU
+
+
