@@ -1,18 +1,27 @@
 @import url('https://fonts.googleapis.com/css2?family=Burbank+Big+Condensed:wght@400&display=swap');
 
+:root {
+    --black_matte: #3E3C4B;
+    --myWhite: #efeeee;
+}
+
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: 'Burbank Big Condensed', sans-serif;
-    color: white;
+    color: var(--myWhite);
+    scroll-behavior: smooth;
 }
 
-body {    
-    height: 100vh;
-    width: 99vw;
+body {
+    background-image: url('../assets/img/backgrounds-fn/aang\ iceberg\ \(cyan\ bg\).png');
+}
 
+#container {
+  height: 100%;
+  background-color: #2B4843;
 }
 
 #sectionOne {
@@ -21,34 +30,43 @@ body {
     background-repeat: no-repeat;
     background-size: 100%;
 
-    height: 100%;
+    height: 100vh;
+    padding: 2.5em;
 
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
 }
 
 header {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
+    align-items: center;
+    height: 10vh;
     width: 100%;
+    position: fixed;
+    top: 0;
+    backdrop-filter: blur(8px);
 }
 
-logoKaizen {
-    background-color: blue;
+#logo {
+    height: 10%;
     width: 25%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 nav {
-
-
     display: flex;
     justify-content: space-between;
     align-items: center;
-
+    height: 10%;
     width: 50%;
 
 }
 
 ul {
-    background-color: red;
 
     display: flex;
     justify-content: space-around;
@@ -62,18 +80,215 @@ ul {
 
 ul > li {
     cursor: pointer;
+    text-decoration: none;
+    list-style: none;
+    
+}
+
+
+
+li > a {
+    text-decoration: none;
 
 }
 
+a {
+    text-decoration: none;
+    cursor: pointer;
+    
+}
+
+li {
+    text-decoration: none;
+    list-style: none;  
+  
+    padding-block: 0.5rem;
+    padding-inline: 1.25rem;
+
+    font-size: 20pt;
+    
+    background-color: transparent;
+    border-radius: 15px;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    cursor: pointer;
+    color: #ffff;
+    gap: 10px;
+    font-weight: bold;
+    outline: none;
+    overflow: hidden;
+
+    position: relative;
+    transition: all 0.1s ease-in-out;
+    
+}
+
+#botaoPaginaInicial:hover, #botaoSessaoFN:hover, #botaoSessaoKaizen:hover, #botaoSessaoDev:hover {
+    border: 3px solid var(--myWhite);
+    border-color: var(--myWhite);
+
+  }
+  
+  li:hover::before {
+    animation: feixeLuz 1s ease-out forwards;
+  }
+  
+  li::before {
+    content: "";
+    position: absolute;
+    width: 100px;
+    height: 100%;
+    background-image: linear-gradient(
+      120deg,
+      rgba(255, 255, 255, 0) 30%,
+      rgba(255, 255, 255, 0.8),
+      rgba(255, 255, 255, 0) 70%
+    );
+    
+    top: 0;
+    left: -100px;
+    opacity: 0.6;
+  }
+
+li > a > #paginaInicial {
+    background-color: #D9D9D9;
+}
+
 #facaParte {
-    background-color: green;
     
     display: flex;
     justify-content: center;
     align-items: center;
 
+    height: 10%;
     width: 25%;
 
+    gap: 10px;
+    
+}
+
+#facaParte #textoFacaParte {
+    height: 50%;
+    width: 25%;
+
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+}
+
+#facaParte #textoFacaParte > p:hover {
+    background-color: #D9D9D9;
+    color: #3E3C4B;
+}
+
+.button {
+    position: relative;
+    transition: all 0.3s ease-in-out;
+
+    padding-block: 0.5rem;
+    padding-inline: 1.25rem;
+
+    background-color: var(--myWhite);
+    color: var(--black_matte);
+
+    border-radius: 15px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+
+    border: none;
+    outline: none;
+    
+    overflow: hidden;
+    font-size: 20.75px;
+
+   
+  }
+  
+  .button:hover {
+    transform: scale(1.05);
+
+  }
+  
+  .button::before {
+      content: "";
+      position: absolute;
+      width: 100px;
+      height: 100%;
+      background-image: linear-gradient(
+          120deg,
+          rgba(255, 255, 255, 0) 30%,
+          rgba(255, 255, 255, 0.8),
+          rgba(255, 255, 255, 0) 70%
+          );
+          top: 0;
+          left: -100px;
+          opacity: 0.6;
+        }
+        
+        .button:hover::before {
+          animation: feixeLuz 1.5s ease-out infinite;
+          
+        }
+        
+  @keyframes feixeLuz {
+    0% {
+      left: -100px;
+    }
+  
+    60% {
+      left: 100%;
+    }
+  
+    to {
+      left: 100%;
+    }
+  }
+  
+/* ======================================================== */
+/*                          MAIN                            */
+/* ======================================================== */
+
+main {
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+
+}
+
+#tituloEventos {
+    display: flex;
+    align-items: center;
+    font-size: 60pt;
+    text-align: start;
+    text-transform: uppercase;
+    letter-spacing: 8px;
+}
+
+
+#eventos {
+    height: 35%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 24px;
+    padding-bottom: 9px;
+}
+
+#setas {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    height: 10%;
 
 }
 
@@ -81,10 +296,146 @@ ul > li {
 /*                      section Two                         */
 /* ======================================================== */
 #sectionTwo {
-    background-color: #2B4843;
-    height: 100%;
-    width: 100%;
+    /* height: 1840px; */
+    /* width: 100%; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;  
 
-    
+    padding: 6em 6em 0 6em;
 }
 
+
+#tituloFortnite {
+
+  font-size: 60pt;
+
+  text-align: center;
+  text-transform: uppercase;
+  padding-bottom: 10px;
+
+}
+
+#explicacao {
+  background-color: #D9D9D9;
+  border-radius: 20px;
+  padding: 40px;
+  height: 70%;
+  
+  text-transform: uppercase;
+  font-size: 46pt;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+}
+
+#explicacao p {
+  color: #2B4843;
+
+}
+
+#sectionThree {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 55%;
+  padding: 6em 6em 0 6em;
+
+}
+
+#historia {
+  font-size: 60pt;
+
+}
+
+#video_historia {
+  background-color: var(--myWhite);
+
+
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+}
+
+#video_historia p {
+  color: #111817;
+  font-size: 20pt;
+
+  display: flex;
+  justify-content: flex-start;
+}
+
+#video_historia iframe {
+  width: 1500px;
+  height: 750px;
+}
+
+
+#sectionFour {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+  padding: 6em 6em 0 6em;
+
+}
+
+#sectionFour h1 {
+  font-size: 70pt;
+}
+
+#sectionFour a {
+  width: 50%;
+  cursor: pointer;
+  
+}
+
+#sectionFour button {
+  font-size: 30pt;
+  height: 25%;
+  width: 100%;
+  background-color: transparent;
+  color: var(--myWhite);
+  border: 2px solid var(--myWhite);
+  cursor: pointer;
+}
+
+#sectionFour #kaizenZone {
+  display: flex;
+}
+
+#kaizenZone #icons {
+  display: flex;
+  flex-direction: column;
+}
+
+#kaizenZone #descriptionKaizen p {
+  background-color: var(--myWhite);
+  color: #2B4843;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #3d897c;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #2B4843;
+  }

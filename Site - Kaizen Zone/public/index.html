@@ -1,47 +1,212 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Kaizen Zone</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="shortcut icon" href="assets/icon/favicon.ico" type="image/x-icon">
-</head>
+    <link rel="stylesheet" href="css/style.css" />
+    <link
+      rel="shortcut icon"
+      href="assets/icon/favicon.ico"
+      type="image/x-icon"
+    />
+  </head>
 
-<body>
-    <section id="sectionOne">
-        
-        <header>
-            <logoKaizen>
-                <a href="index.html">
-                    <img src="assets/img/logo-kaizen/logo_kaizenzone.png" alt="Logo Kaizen Zone" width="200px">
-                </a>
-            </logoKaizen>
-
-            <nav>
-                <ul>
-                    <li>PÁGINA INICIAL</li>
-                    <li>FORTNITE</li>
-                    <li>KAIZEN ZONE</li>
-                    <li>FEEDBACK</li>
-                </ul>
-            </nav>
-
-            <div id="facaParte">
-                <a href="cadastro.html">
-                    <img src="assets/img/user (white).png" width="35px" height="35px">
-                
-                    <p>FAÇA PARTE</p>
-                </a>
+  <body style="margin-top: 10vh">
+    <header>
+      <div id="logo">
+        <a href="#sectionOne">
+          <img
+            src="assets/img/logo-kaizen/logo_kaizenzone.png"
+            alt="Logo Kaizen Zone"
+            width="175px"
+          />
+        </a>
+      </div>
+      <nav>
+        <ul>
+          <a href="#sectionOne"
+            ><li id="botaoPaginaInicial">PÁGINA INICIAL</li></a
+          >
+          <a href="#sectionTwo"><li id="botaoSessaoFN">FORTNITE</li></a>
+          <a href="#sectionFour"><li id="botaoSessaoKaizen">KAIZEN ZONE</li></a>
+          <a href="#sectionFive"><li id="botaoSessaoDev">DESENVOLVEDOR</li></a>
+        </ul>
+      </nav>
+      <div id="facaParte">
+        <a href="cadastro.html">
+          <img
+            src="assets/img/user (white).png"
+            width="42.5px"
+            height="42.5px"
+          />
+        </a>
+        <a href="cadastro.html" id="textoFacaParte">
+          <button class="button">FAÇA PARTE</button>
+        </a>
+      </div>
+    </header>
+    <div id="container">
+      <section id="sectionOne">
+        <div id="tituloEventos">
+          <h1>Conheça os Melhores Eventos do Fortnite !</h1>
+        </div>
+        <div id="eventos">
+          <div style="display: flex; justify-content: space-between">
+            <div id="musical">
+              <a href="#"
+                ><img
+                  src="assets/img/Eventos Musicais/eventos musicais.png"
+                  width="550px"
+                  alt="Eventos Musicais"
+              /></a>
             </div>
-        </header>
-        
-    </section>
+            <div id="presencial">
+              <a href="#"
+                ><img
+                  src="assets/img/Eventos presenciais/eventos presenciais.png"
+                  width="550px"
+                  alt="Eventos Presenciais"
+              /></a>
+            </div>
+            <div id="conscientizante">
+              <a href="#"
+                ><img
+                  src="assets/img/Eventos para conscientizar/eventos conscientizantes.png"
+                  width="550px"
+                  alt="Eventos Conscientizantes"
+              /></a>
+            </div>
+          </div>
+          <div id="setas">
+            <a href="#sectionTwo"
+              ><img
+                src="assets/img/setasBaixo.png"
+                alt="Seta para baixo"
+                width="40px"
+            /></a>
+          </div>
+        </div>
+        <!-- Usar <ul> para deixar semanticamente correto -->
+      </section>
 
-    <section id="sectionTwo">
+      <section id="sectionTwo">
+        <div id="tituloFortnite">
+          <h1>O que é o Fortnite?</h1>
+        </div>
+        <div id="explicacao">
+          <p>
+            O Fortnite não é apenas um jogo de Battle royale, mas ele também tem
+            uma comunidade muito abrangente, atingindo milhares de pessoas
+            através de seus eventos online ao vivo, campeonatos ou até mesmo
+            eventos de conscientização.
+            <br /><br />
+            Uma curiosidade interessante é que a Epic games (criadora do jogo)
+            criou toda uma história por trás, então a cada temporada ou capítulo
+            que passa, sempre existem fatores de acontecimento que afetam o
+            momento atual transformando o jogo no que é hoje...
+            <br /><br />
+            Caso queira ver a história do Fortnite, abaixo há um vídeo para
+            conhecer melhor sobre:
+          </p>
+        </div>
+      </section>
+      <section id="sectionThree">
+        <div id="historia">
+          <h1>HISTÓRIA DO FORTNITE</h1>
+        </div>
+        <div id="video_historia">
+          <iframe
+            src="https://www.youtube.com/embed/Zh7xjDC7Xvw?rel=0&showinfo=0&si=WHaQRyS-TJrRvfoL&listType=playlist"
+            title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay=1; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen
+          ></iframe>
+          <p>*CRÉDITOS AO VÍDEO DO CANAL PROTA GAMES*</p>
+        </div>
+      </section>
 
-    </section>
-</body>
+      <section id="sectionFour">
+        <h1>KAIZEN ZONE | FORTNITE | ONU (ODS 17)</h1>
+        <a href="cadastro.html"
+          ><button>
+            EXPLORE, COMPARTILHE E MELHORE – BEM-VINDO AO KAIZEN ZONE
+          </button></a
+        >
+        <div id="kaizenZone">
+          <div id="icons">
+            <a href="#sectionOne">
+              <img src="assets/img/logo-kaizen/logo_kaizenzona (only K) .png" />
+            </a>
 
+            <a href="https://www.fortnite.com/">
+              <img src="assets/img/fortnite-logo.png" width="100px" />
+            </a>
+
+            <a href="https://brasil.un.org/pt-br/sdgs/17">
+              <img src="assets/img/ods17.png" width="100px" />
+            </a>
+          </div>
+          <div id="descriptionKaizen">
+            <p>
+              O KAIZEN ZONE PARTIU DA COMBINAÇÃO DE DOIS CONCEITOS PODEROSOS:
+            </p>
+
+            <p>
+              1. "KAIZEN", QUE VEM DO JAPONÊS E SIGNIFICA MELHORIA CONTÍNUA.
+              <br>
+              2. "ZONE", INSPIRADO NO TERMO "SAFEZONE" DO FORTNITE, REFERINDO-SE A
+              UMA ZONA SEGURA.
+            </p>
+
+            <p>
+              Juntos, criamos um espaço seguro e dedicado ao crescimento e
+              aperfeiçoamento constante, tanto no jogo quanto na comunidade.
+            </p>
+
+            <p>
+              No Kaizen Zone, discutimos tudo o que acontece no universo de
+              Fortnite. Aqui, você Poderá encontrar conversas sobre novas
+              parcerias COM O FORTNITE, atualizações sobre eventos musicais no
+              jogo, dicas valiosas para melhorar seu desempenho no modo
+              competitivo, E TEORIAS SOBRE O FUTURO DA HISTÓRIA DO FORTNITE.
+              Nosso fórum é um ambiente de aprendizado e colaboração, onde
+              jogadores de todos os níveis podem compartilhar experiências e
+              crescer juntos.
+            </p>
+
+            <p>
+              A nossa missão CONTRIBUI INDIRETAMENTE COM o Objetivo de
+              Desenvolvimento Sustentável (ODS) 17 da ONU, que visa fortalecer
+              os meios de implementação e revitalizar a parceria global para o
+              desenvolvimento sustentável. Ao promover discussões sobre
+              parcerias no jogo e incentivar a cooperação entre jogadores e
+              criadores de conteúdo, estamos ajudando a construir um ambiente
+              mais colaborativo e inovador, refletindo os princípios do ODS 17.
+            </p>
+
+            <p>
+              A nossa missão CONTRIBUI INDIRETAMENTE COM o Objetivo de
+              Desenvolvimento Sustentável (ODS) 17 da ONU, que visa fortalecer
+              os meios de implementação e revitalizar a parceria global para o
+              desenvolvimento sustentável. Ao promover discussões sobre
+              parcerias no jogo e incentivar a cooperação entre jogadores e
+              criadores de conteúdo, estamos ajudando a construir um ambiente
+              mais colaborativo e inovador, refletindo os princípios do ODS 17.
+            </p>
+
+            <p>
+              No Kaizen Zone, acreditamos que cada discussão e cada interação
+              são oportunidades para melhorar e evoluir. Quer você seja um
+              jogador casual ou um competidor de alto nível, seu lugar é aqui.
+              Junte-se a nós e faça parte de uma comunidade que valoriza a
+              melhoria contínua..
+            </p>
+          </div>
+        </div>
+      </section>
+    </div>
+  </body>
 </html>
