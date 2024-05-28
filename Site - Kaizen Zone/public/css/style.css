@@ -2,7 +2,7 @@
 
 :root {
   --black_matte: #3E3C4B;
-  --myWhite: #efeeee;
+  --myWhite: white;
 }
 
 
@@ -17,6 +17,7 @@
 
 body {
   background-image: url('../assets/img/backgrounds-fn/aang\ iceberg\ \(cyan\ bg\).png');
+  background-size: cove;
 }
 
 #container {
@@ -38,6 +39,7 @@ body {
   justify-content: space-around;
 }
 
+
 header {
   display: flex;
   justify-content: space-between;
@@ -47,6 +49,20 @@ header {
   position: fixed;
   top: 0;
   backdrop-filter: blur(8px);
+
+  transition: all 0.5s ease-in-out 0ms;
+}
+
+/* 
+ESTILIZAÇÃO DA CLASSE ROLAGEM (APENAS QUANDO O EIXO Y > 0)
+*/
+
+header.scrolling {
+  background-color: #248d8486;
+  backdrop-filter: blur(8px);
+  border-bottom-left-radius: 50px;
+  border-bottom-right-radius: 50px;
+
 }
 
 #logo {
@@ -101,13 +117,14 @@ a {
 #botaoPaginaInicial:hover,
 #botaoSessaoFN:hover,
 #botaoSessaoKaizen:hover,
-#botaoSessaoDev:hover {
+#botaoSessaoDev:hover,
+#botaoSessaoEstatisticas:hover {
   border: 3px solid var(--myWhite);
   border-color: var(--myWhite);
 
 }
 
-li {
+.botoesHeader {
   text-decoration: none;
   list-style: none;
 
@@ -135,11 +152,11 @@ li {
 
 }
 
-li:hover::before {
+.botoesHeader:hover::before {
   animation: feixeLuz 1s ease-out forwards;
 }
 
-li::before {
+.botoesHeader::before {
   content: "";
   position: absolute;
   width: 100px;
@@ -324,7 +341,7 @@ main {
   height: 70%;
 
   text-transform: uppercase;
-  font-size: 46pt;
+  font-size: 41pt;
 
   display: flex;
   justify-content: center;
@@ -340,9 +357,10 @@ main {
 #sectionThree {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  height: 55%;
+
+  height: 50%;
   padding: 6em 6em 0 6em;
 
 }
@@ -370,11 +388,12 @@ main {
 
   display: flex;
   justify-content: flex-start;
+  margin-top: 5px;
 }
 
 #video_historia iframe {
-  width: 1500px;
-  height: 750px;
+  width: 65vw;
+  height: 70vh;
 }
 
 
@@ -392,7 +411,7 @@ main {
 }
 
 #sectionFour a {
-  width: 50%;
+  width: 75vw;
   cursor: pointer;
 
 }
@@ -401,11 +420,13 @@ main {
   background-color: transparent;
 
   color: var(--myWhite);
-  font-size: 30pt;
+  font-size: 4em;
+  /* letter-spacing: 20px; */
 
   padding-top: 10px;
   height: 25%;
-  width: 100%;
+  width: 75vw;
+  text-align: center;
 
   border: 2px solid var(--myWhite);
   cursor: pointer;
@@ -419,20 +440,201 @@ main {
 
 }
 
-#sectionFour #kaizenZone {
+#kaizenZone {
   display: flex;
+
+  margin-top: 20px;
 }
 
-#kaizenZone #icons {
+#icons {
+
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  width: 50%;
+  gap: 50px;
 }
 
-#kaizenZone #descriptionKaizen p {
+#icons a,
+#icons img {
+  width: 400px;
+  height: auto;
+}
+
+#descriptionKaizen {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 60%;
   background-color: var(--myWhite);
-  color: #2B4843;
+
+  font-size: 2.8em;
+  margin-bottom: 40px;
+  padding: 50px;
+  border-radius: 20px;
+  gap: 30px;
 }
 
+#descriptionKaizen p {
+  color: #2B4843;
+
+}
+
+/* 
+SECTION FIVE!!
+SECTION FIVE!!
+SECTION FIVE!!
+SECTION FIVE!!
+*/
+
+#sectionFive {
+  background-color: #2B4843;
+
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 75vh;
+
+  font-size: 2em;
+
+
+}
+
+#developer {
+  height: 100%;
+  width: 50%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  gap: 20px;
+  font-size: 1.1em;
+
+}
+
+#info {
+  height: 100%;
+  width: 65%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+
+  font-size: 1.1em;
+  padding: 2.5em;
+  gap: 1em;
+}
+
+#info h1 {
+  font-size: 1.5em;
+  font-weight: 900;
+
+}
+
+
+#bio,
+#questionTheme {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 85%;
+
+
+}
+
+/* 
+FOOTER!
+FOOTER!
+FOOTER!
+*/
+
+footer {
+  background-color: #233A36;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+  height: 25vh;
+}
+
+#left-side {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  gap: 20px;
+  font-size: 1.5em;
+
+}
+
+#center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  width: 40vw;
+  gap: 1.2em;
+
+  list-style-type: none;
+
+  font-size: 1.3em;
+
+}
+
+#sessoesFooter {
+  display: flex;
+  justify-content: space-between;
+
+  width: 15vw;
+}
+
+#columnOne,
+#columnTwo {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+}
+
+#right-side {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 10px;
+
+  width: 15vw;
+}
+
+#telefone, #email {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5em;
+  font-size: 15pt;
+  
+}
+
+#contact {
+  display: flex;
+  justify-content: flex-start;
+  gap: 1.1em;
+
+  width: 100%;
+}
+
+
+/* 
+CONFIGURAÇÕES DA SCROLL BAR !
+CONFIGURAÇÕES DA SCROLL BAR !
+*/
 ::-webkit-scrollbar {
   width: 10px;
 }

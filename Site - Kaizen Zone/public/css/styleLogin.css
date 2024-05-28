@@ -108,7 +108,7 @@ body {
 
 #card {
   height: 65%;
-  width: 35%;
+  width: 25%;
 
   background-color: rgb(32, 60, 93, 0.6);
   backdrop-filter: blur(15px);
