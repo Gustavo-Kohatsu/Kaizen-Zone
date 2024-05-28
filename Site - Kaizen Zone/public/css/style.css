@@ -1,22 +1,22 @@
 @import url('https://fonts.googleapis.com/css2?family=Burbank+Big+Condensed:wght@400&display=swap');
 
 :root {
-    --black_matte: #3E3C4B;
-    --myWhite: #efeeee;
+  --black_matte: #3E3C4B;
+  --myWhite: #efeeee;
 }
 
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Burbank Big Condensed', sans-serif;
-    color: var(--myWhite);
-    scroll-behavior: smooth;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Burbank Big Condensed', sans-serif;
+  color: var(--myWhite);
+  scroll-behavior: smooth;
 }
 
 body {
-    background-image: url('../assets/img/backgrounds-fn/aang\ iceberg\ \(cyan\ bg\).png');
+  background-image: url('../assets/img/backgrounds-fn/aang\ iceberg\ \(cyan\ bg\).png');
 }
 
 #container {
@@ -25,270 +25,269 @@ body {
 }
 
 #sectionOne {
-    background-image: url('../assets/img/backgrounds-fn/aang\ iceberg\ \(cyan\ bg\).png');
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: 100%;
+  background-image: url('../assets/img/backgrounds-fn/aang\ iceberg\ \(cyan\ bg\).png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100%;
 
-    height: 100vh;
-    padding: 2.5em;
+  height: 100vh;
+  padding: 2.5em;
 
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 }
 
 header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 10vh;
-    width: 100%;
-    position: fixed;
-    top: 0;
-    backdrop-filter: blur(8px);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 10vh;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  backdrop-filter: blur(8px);
 }
 
 #logo {
-    height: 10%;
-    width: 25%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  height: 10%;
+  width: 25%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 10%;
-    width: 50%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 10%;
+  width: 50%;
 
 }
 
 ul {
 
-    display: flex;
-    justify-content: space-around;
+  display: flex;
+  justify-content: space-around;
 
-    font-size: 20pt;
-    list-style: none;
-    
-    width: 100%;
-    
+  font-size: 20pt;
+  list-style: none;
+
+  width: 100%;
+
 }
 
-ul > li {
-    cursor: pointer;
-    text-decoration: none;
-    list-style: none;
-    
+ul>li {
+  cursor: pointer;
+  text-decoration: none;
+  list-style: none;
+
 }
 
 
 
-li > a {
-    text-decoration: none;
+li>a {
+  text-decoration: none;
 
 }
 
 a {
-    text-decoration: none;
-    cursor: pointer;
-    
+  text-decoration: none;
+  cursor: pointer;
+
+}
+
+#botaoPaginaInicial:hover,
+#botaoSessaoFN:hover,
+#botaoSessaoKaizen:hover,
+#botaoSessaoDev:hover {
+  border: 3px solid var(--myWhite);
+  border-color: var(--myWhite);
+
 }
 
 li {
-    text-decoration: none;
-    list-style: none;  
-  
-    padding-block: 0.5rem;
-    padding-inline: 1.25rem;
+  text-decoration: none;
+  list-style: none;
 
-    font-size: 20pt;
-    
-    background-color: transparent;
-    border-radius: 15px;
-    
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    
-    cursor: pointer;
-    color: #ffff;
-    gap: 10px;
-    font-weight: bold;
-    outline: none;
-    overflow: hidden;
+  padding-block: 0.5rem;
+  padding-inline: 1.25rem;
 
-    position: relative;
-    transition: all 0.1s ease-in-out;
-    
+  font-size: 20pt;
+
+  background-color: transparent;
+  border-radius: 15px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+  color: #ffff;
+  gap: 10px;
+  font-weight: bold;
+  outline: none;
+  overflow: hidden;
+
+  position: relative;
+  transition: all 0.1s ease-in-out;
+
 }
 
-#botaoPaginaInicial:hover, #botaoSessaoFN:hover, #botaoSessaoKaizen:hover, #botaoSessaoDev:hover {
-    border: 3px solid var(--myWhite);
-    border-color: var(--myWhite);
+li:hover::before {
+  animation: feixeLuz 1s ease-out forwards;
+}
 
-  }
-  
-  li:hover::before {
-    animation: feixeLuz 1s ease-out forwards;
-  }
-  
-  li::before {
-    content: "";
-    position: absolute;
-    width: 100px;
-    height: 100%;
-    background-image: linear-gradient(
-      120deg,
+li::before {
+  content: "";
+  position: absolute;
+  width: 100px;
+  height: 100%;
+  background-image: linear-gradient(120deg,
       rgba(255, 255, 255, 0) 30%,
       rgba(255, 255, 255, 0.8),
-      rgba(255, 255, 255, 0) 70%
-    );
-    
-    top: 0;
-    left: -100px;
-    opacity: 0.6;
-  }
+      rgba(255, 255, 255, 0) 70%);
 
-li > a > #paginaInicial {
-    background-color: #D9D9D9;
+  top: 0;
+  left: -100px;
+  opacity: 0.6;
+}
+
+li>a>#paginaInicial {
+  background-color: #D9D9D9;
 }
 
 #facaParte {
-    
-    display: flex;
-    justify-content: center;
-    align-items: center;
 
-    height: 10%;
-    width: 25%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-    gap: 10px;
-    
+  height: 10%;
+  width: 25%;
+
+  gap: 10px;
+
 }
 
 #facaParte #textoFacaParte {
-    height: 50%;
-    width: 25%;
+  height: 50%;
+  width: 25%;
 
-    text-decoration: none;
-    display: flex;
-    align-items: center;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
 }
 
-#facaParte #textoFacaParte > p:hover {
-    background-color: #D9D9D9;
-    color: #3E3C4B;
+#facaParte #textoFacaParte>p:hover {
+  background-color: #D9D9D9;
+  color: #3E3C4B;
 }
 
 .button {
-    position: relative;
-    transition: all 0.3s ease-in-out;
+  position: relative;
+  transition: all 0.3s ease-in-out;
 
-    padding-block: 0.5rem;
-    padding-inline: 1.25rem;
+  padding-block: 0.5rem;
+  padding-inline: 1.25rem;
 
-    background-color: var(--myWhite);
-    color: var(--black_matte);
+  background-color: var(--myWhite);
+  color: var(--black_matte);
 
-    border-radius: 15px;
+  border-radius: 15px;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-    cursor: pointer;
+  cursor: pointer;
 
-    border: none;
-    outline: none;
-    
-    overflow: hidden;
-    font-size: 20.75px;
+  border: none;
+  outline: none;
 
-   
+  overflow: hidden;
+  font-size: 20.75px;
+
+
+}
+
+.button:hover {
+  transform: scale(1.05);
+
+}
+
+.button::before {
+  content: "";
+  position: absolute;
+  width: 100px;
+  height: 100%;
+  background-image: linear-gradient(120deg,
+      rgba(255, 255, 255, 0) 30%,
+      rgba(255, 255, 255, 0.8),
+      rgba(255, 255, 255, 0) 70%);
+  top: 0;
+  left: -100px;
+  opacity: 0.6;
+}
+
+.button:hover::before {
+  animation: feixeLuz 1.5s ease-out infinite;
+
+}
+
+@keyframes feixeLuz {
+  0% {
+    left: -100px;
   }
-  
-  .button:hover {
-    transform: scale(1.05);
 
+  60% {
+    left: 100%;
   }
-  
-  .button::before {
-      content: "";
-      position: absolute;
-      width: 100px;
-      height: 100%;
-      background-image: linear-gradient(
-          120deg,
-          rgba(255, 255, 255, 0) 30%,
-          rgba(255, 255, 255, 0.8),
-          rgba(255, 255, 255, 0) 70%
-          );
-          top: 0;
-          left: -100px;
-          opacity: 0.6;
-        }
-        
-        .button:hover::before {
-          animation: feixeLuz 1.5s ease-out infinite;
-          
-        }
-        
-  @keyframes feixeLuz {
-    0% {
-      left: -100px;
-    }
-  
-    60% {
-      left: 100%;
-    }
-  
-    to {
-      left: 100%;
-    }
+
+  to {
+    left: 100%;
   }
-  
+}
+
 /* ======================================================== */
 /*                          MAIN                            */
 /* ======================================================== */
 
 main {
-    height: 100%;
+  height: 100%;
 
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
 
 }
 
 #tituloEventos {
-    display: flex;
-    align-items: center;
-    font-size: 60pt;
-    text-align: start;
-    text-transform: uppercase;
-    letter-spacing: 8px;
+  display: flex;
+  align-items: center;
+  font-size: 60pt;
+  text-align: start;
+  text-transform: uppercase;
+  letter-spacing: 8px;
 }
 
 
 #eventos {
-    height: 35%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    gap: 24px;
-    padding-bottom: 9px;
+  height: 35%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 24px;
+  padding-bottom: 9px;
 }
 
 #setas {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-    height: 10%;
+  height: 10%;
 
 }
 
@@ -296,18 +295,19 @@ main {
 /*                      section Two                         */
 /* ======================================================== */
 #sectionTwo {
-    /* height: 1840px; */
-    /* width: 100%; */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;  
+  /* height: 1840px; */
+  /* width: 100%; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 
-    padding: 6em 6em 0 6em;
+  padding: 6em 6em 0 6em;
 }
 
 
 #tituloFortnite {
+  padding-top: 20px;
 
   font-size: 60pt;
 
@@ -322,14 +322,14 @@ main {
   border-radius: 20px;
   padding: 40px;
   height: 70%;
-  
+
   text-transform: uppercase;
   font-size: 46pt;
 
   display: flex;
   justify-content: center;
   align-items: center;
-  
+
 }
 
 #explicacao p {
@@ -382,7 +382,7 @@ main {
   display: flex;
   flex-direction: column;
   align-items: center;
-  
+
   padding: 6em 6em 0 6em;
 
 }
@@ -394,17 +394,29 @@ main {
 #sectionFour a {
   width: 50%;
   cursor: pointer;
-  
+
 }
 
 #sectionFour button {
+  background-color: transparent;
+
+  color: var(--myWhite);
   font-size: 30pt;
+
+  padding-top: 10px;
   height: 25%;
   width: 100%;
-  background-color: transparent;
-  color: var(--myWhite);
+
   border: 2px solid var(--myWhite);
   cursor: pointer;
+
+  transition: all 0.3s ease-in-out 0ms;
+}
+
+#sectionFour button:hover {
+  background-color: var(--myWhite);
+  color: #2B4843;
+
 }
 
 #sectionFour #kaizenZone {
@@ -422,20 +434,20 @@ main {
 }
 
 ::-webkit-scrollbar {
-    width: 10px;
-  }
-  
-  /* Track */
-  ::-webkit-scrollbar-track {
-    background: #f1f1f1;
-  }
-  
-  /* Handle */
-  ::-webkit-scrollbar-thumb {
-    background: #3d897c;
-  }
-  
-  /* Handle on hover */
-  ::-webkit-scrollbar-thumb:hover {
-    background: #2B4843;
-  }
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #3d897c;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #2B4843;
+}

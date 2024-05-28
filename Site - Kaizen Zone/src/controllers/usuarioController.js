@@ -8,7 +8,7 @@ function autenticar(req, res) {
     if (email == undefined) {
         res.status(400).send("Seu email está undefined!");
     } else if (senha == undefined) {
-        res.status(400).send("Sua senha está indefinida!");
+        res.status(400).send("Sua senha está undefined!");
     } else {
         usuarioModel.autenticar(email, senha)
             .then(
@@ -80,6 +80,7 @@ function cadastrar(req, res) {
             ).catch(
                 function (erro) {
                     console.log(erro);
+
                     console.log(
                         "\nHouve um erro ao realizar o cadastro! Erro: ",
                         erro.sqlMessage

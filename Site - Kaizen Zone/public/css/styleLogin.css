@@ -107,7 +107,7 @@ body {
 }
 
 #card {
-  height: 68%;
+  height: 65%;
   width: 35%;
 
   background-color: rgb(32, 60, 93, 0.6);
@@ -123,7 +123,7 @@ body {
 
   margin-bottom: 20px;
 
-  gap: 35px;
+  gap: 30px;
 
 }
 
@@ -280,10 +280,10 @@ footer > a:hover {
 
 /* 
 
-CARD ERROS EM GERAL!!
-CARD ERROS EM GERAL!!
-CARD ERROS EM GERAL!!
-CARD ERROS EM GERAL!!
+CARDS DE ERROS!
+CARDS DE ERROS!
+CARDS DE ERROS!
+CARDS DE ERROS!
 
 */
 
@@ -295,23 +295,22 @@ CARD ERROS EM GERAL!!
 #cardErro {
   display: none;
 
-  background-color: white;
   
   border-bottom-left-radius: 20px;
-
+  background-color: white;
+  
   display: flex;
   align-items: center;
   justify-content: center;
-
+  
   position: absolute;
   top: 0;
   right: 0;
-
+  
 }
 
 #mensagem_erro {
   display: none;
-
   color: #264C76;
   padding: 20px;
   font-size: 20pt;
