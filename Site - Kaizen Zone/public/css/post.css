@@ -1,0 +1,207 @@
+@import url('https://fonts.googleapis.com/css2?family=Burbank+Big+Condensed:wght@400&display=swap');
+
+:root {
+    --black_matte: #3E3C4B;
+    --myWhite: white;
+  }
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Burbank Big Condensed', sans-serif;
+    font-weight: 200;
+    color: var(--myWhite);
+}
+
+body {
+    height: 90vh;
+    width: 100vw;
+    background-image: url('../assets/img/backgrounds-fn/background\ forum.png');
+}
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 10vh;
+    width: 100vw;
+    background-image: radial-gradient(circle, #2B73A9 0%, #0C212C 100%);
+    background-repeat: no-repeat;
+    background-size: contain;
+
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+header #logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    width: 20vw;
+    
+}
+
+header ul {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 100px;
+
+    color: white;
+    width: 45vw;
+}
+
+header a {
+    font-size: 20pt;
+    text-decoration: none;
+}
+
+
+li {
+    list-style: none;
+    color: white;
+    
+}
+
+/* 
+================================================================================================
+================================================================================================
+================================================================================================
+*/
+#container {
+    height: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    padding-right: 10vh;
+}
+
+#criacaoPost {
+    background-color: #0C212C;
+
+    height: 80vh;
+    width: 40vw;
+    padding: 2%;
+    border-radius: 30px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+#first {
+    display: flex;
+    flex-direction: column;
+    font-size: 2em;
+}
+
+#titulo {
+    height: 3.5vh;
+    width: 100%;
+    color: #0C212C;
+    padding: 0.5em;
+    font-size: 0.5em;
+}
+
+#second {
+    display: flex;
+    flex-direction: column;
+    font-size: 2em;
+    margin-top: 5%;
+    gap: 30px;
+}
+
+#second label {
+    margin-bottom: -30px;
+}
+
+#second textarea {
+    height: 30vh;
+    width: 100%;
+    color: #0C212C;
+    padding: 0.75em;
+    font-size: 0.5em;
+}
+
+#typePost {
+    display: flex;
+    justify-content: flex-start;
+    gap: 15px;
+
+    height: 10vh;
+}
+
+#typePost select {
+    height: 3vh;
+    width: 10vw;
+    color: #0C212C;
+    font-size: 0.6em;
+    padding-top: 5px;
+    
+}
+
+#typePost option {
+    padding-top: 5px;
+    color: #0C212C;
+}
+
+#third {
+    height: 10vh;
+
+}
+
+#third button {
+    cursor: pointer;
+    background-color: transparent;
+    color: var(--myWhite);
+
+    border-radius: 20px;
+    border: 2px solid var(--myWhite);
+    outline: none;
+
+    width: 100%;
+    height: 35%;
+
+    font-size: 1.25em;
+    font-weight: 200;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    transition: all 0.25s ease-in-out 0ms;
+}
+
+#third button:hover {
+    background-color: var(--myWhite);
+    color: #0C212C;
+}
+
+
+#graficos {
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    height: 70vh;
+    width: 30vw;
+    gap: 30px;
+}
+
+.graficos {
+    background-color: rgba(255, 255, 255, 0.5); 
+    color: #0C212C !important;
+    border-radius: 10px; 
+    position: relative; 
+    
+    height: 35vh; 
+    width: 35vw;
+
+    display: flex; 
+    justify-content: center;
+}

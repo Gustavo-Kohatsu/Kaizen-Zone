@@ -3,20 +3,21 @@ function validarSessao() {
     var email = sessionStorage.EMAIL_USUARIO;
     var nome = sessionStorage.NOME_USUARIO;
     var dtnascimento = sessionStorage.DTNASCIMENTO_USUARIO;
-    /* var cpf = sessionStorage.CPF_USUARIO; */
+
 
     
     var b_usuario = document.getElementById("b_usuario");
     var b_data_nascimento = document.getElementById("b_data_nascimento");
 
-    /* var b_cpfDIV = document.getElementById('b_cpf'); */
+    
 
     if ((email != null && nome != null)) {
         b_usuario.innerHTML = nome.substring(0, 1).toUpperCase() + nome.substring(1, nome.length);
         b_data_nascimento.innerHTML = dtnascimento.substring(0, 10);
-        /* b_cpfDIV.innerHTML = sessionStorage.CPF_USUARIO; */
+        
 
     } else {
+        alert('Usuário não identificado! Redirecionando para página de Login...')
         window.location = "../login.html";
     }
 }
