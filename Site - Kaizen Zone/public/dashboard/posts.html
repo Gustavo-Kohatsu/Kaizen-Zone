@@ -8,9 +8,11 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <link rel="shortcut icon" href="../assets/img/logo-kaizen/favicon.ico" type="image/x-icon" />
   <link rel="stylesheet" href="../css/post.css" />
+
+  <script src="../js/funcoesPost.js"></script>
 </head>
 
-<body style="margin-top: 10vh">
+<body style="margin-top: 10vh" onload="exibirGrafico()">
   <header>
     <div id="logo">
       <a href="../index.html">
@@ -41,8 +43,8 @@
       </div>
 
       <div id="second">
-        <label for="conteudo">CONTEÚDO (MÁXIMO 1800 CARACTERES):</label>
-        <textarea id="conteudo" maxlength="1800"></textarea>
+        <label for="conteudo">CONTEÚDO (MÁXIMO 1000 CARACTERES):</label>
+        <textarea id="conteudo" maxlength="1000"></textarea>
         <div id="typePost">
           <label for="tipo_post">TIPO DO POST:</label>
           <select id="tipo_post">
@@ -59,11 +61,25 @@
       </div>
     </div>
     <div id="graficos">
-      <div id="graficoBarra">
-        <h1>QUANTIDADE DE POSTS (USUÁRIO X POSTS)</h1>
-        <div class="graficos">
-          <canvas id="myChart"></canvas>
+      <div id="container-kpi">
+        
+        <div class="quadroKPI">
+          <h1>SEUS POSTS</h1>  
+          <span class="valorKPI">
+            <img src="../assets/img/icon-postUser.png">
+            <span id="postsUsuario">30</span>
+          </span>
         </div>
+
+        <div class="quadroKPI">
+          <h1>POSTS TOTAIS</h1>  
+          <span class="valorKPI">
+            <img src="../assets/img/icon-postTotal.png">
+            <span id="postsTotais">90</span>
+          </span>
+        </div>
+
+        
       </div>
       <div id="graficoPizza">
         <h1>QUANTIDADE DE TIPO DE POSTS</h1>
@@ -78,16 +94,6 @@
 </html>
 
 <script>
-  var idUsuario = sessionStorage.getItem("ID_USUARIO");
-
-  pegarQtdPostsUser();
-  pegarQtdPostsTotal();
-  pegarPostTeoria();
-  pegarPostCompetitivo();
-  pegarPostNoticia();
-
-  exibirGrafico();
-
 
   function postar() {
     var idUsuario = sessionStorage.ID_USUARIO;
@@ -98,200 +104,64 @@
       tipoPost: tipo_post.value,
     };
 
-    fetch(`/posts/publicar/${idUsuario}`, {
-      method: "post",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(corpoPost),
-    })
-      .then(function (resposta) {
-        console.log(`Reposta: ${resposta}`);
-
-        if (resposta.ok) {
-          alert(
-            `Publicação feita com sucesso, pelo usuário com a identificação nº ${idUsuario}!`
-          );
-          window.location = "../dashboard/posts.html";
-        } else if (resposta.status == 404) {
-          alert("Deu ERROR 404!");
+    if (corpoPost.tituloPost == '' ||
+        corpoPost.conteudoPost == '' ||
+        corpoPost.tipoPost == '#') {
+          alert('Algum campo em branco!');
+          
         } else {
-          throw `Houve um erro ao tentar realizar a postagem! Status da resposta: ${resposta.status}`;
-          alert(
-            `Houve um erro ao tentar realizar a postagem! Status da resposta: ${resposta.status}`
-          );
+          fetch(`/posts/publicar/${idUsuario}`, {
+            method: "post",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(corpoPost),
+          })
+            .then(function (resposta) {
+              console.log(`Reposta: ${resposta}`);
+      
+              if (resposta.ok) {
+                alert(
+                  `Publicação feita com sucesso, pelo usuário com a identificação nº ${idUsuario}!`
+                );
+
+                location.reload();
+              } else if (resposta.status == 404) {
+                alert("Deu ERROR 404!");
+              } else {
+                throw `Houve um erro ao tentar realizar a postagem! Status da resposta: ${resposta.status}`;
+                alert(
+                  `Houve um erro ao tentar realizar a postagem! Status da resposta: ${resposta.status}`
+                );
+              }
+            })
+            .catch(function (resposta) {
+              console.log(`#ERRO: ${resposta}`);
+              alert(resposta);
+            });
+      
+          return false;
+
         }
-      })
-      .catch(function (resposta) {
-        console.log(`#ERRO: ${resposta}`);
-        alert(resposta);
-      });
-
-    return false;
+        
   }
 
-  function pegarQtdPostsUser() {
-    fetch(`/posts/pegarQtdPostsUser/${idUsuario}`)
-      .then(function (response) {
-        if (response.ok) {
-          response.json().then(function (resposta) {
-            console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-            sessionStorage.POSTS_USUARIO = resposta[0].totalPostUsuario;
-          });
-        } else {
-          console.log("Nenhum valor encontrado ou ocorreu algum erro na API!");
-          alert("Nenhum valor encontrado ou ocorreu algum erro na API!");
-        }
-      })
-      .catch(function (error) {
-        console.log(
-          `Erro na captura dos dados para o gráfico: ${error.message}`
-        );
-        alert(`Erro na captura dos dados para o gráfico: ${error.message}`);
-      });
-
-    return false;
-  }
-
-  function pegarQtdPostsTotal() {
-    fetch(`/posts/pegarQtdPostsTotal`)
-      .then(function (resposta) {
-        if (resposta.ok) {
-          resposta.json().then(function (response) {
-            console.log(`Dados recebidos: ${JSON.stringify(response)}`);
-            sessionStorage.POSTS_TOTAIS = response[0].totalPost;
-          });
-        } else {
-          console.log("Nenhum valor encontrado ou ocorreu algum erro na API!");
-          alert("Nenhum valor encontrado ou ocorreu algum erro na API!");
-        }
-      })
-      .catch(function (error) {
-        console.log(
-          `Erro na captura dos dados para o gráfico: ${error.message}`
-        );
-        alert(`Erro na captura dos dados para o gráfico: ${error.message}`);
-      });
-  }
-
-  function pegarPostTeoria() {
-
-    fetch(`/posts/pegarPostTeoria/${idUsuario}`)
-      .then(function (response) {
-        if (response.ok) {
-          response.json().then(function (resposta) {
-            console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-            sessionStorage.TIPO_POST_TEORIAS = resposta[0].postTeoria;
-          });
-        } else {
-          console.log("Nenhum valor encontrado ou ocorreu algum erro na API!");
-          alert("Nenhum valor encontrado ou ocorreu algum erro na API!");
-        }
-      })
-      .catch(function (error) {
-        console.log(
-          `Erro na captura dos dados para o gráfico: ${error.message}`
-        );
-        alert(`Erro na captura dos dados para o gráfico: ${error.message}`);
-      })
-
-    return false;
-
-  }
-
-  function pegarPostCompetitivo() {
-    fetch(`/posts/pegarPostCompetitivo/${idUsuario}`)
-      .then(function (response) {
-        if (response.ok) {
-          response.json().then(function (resposta) {
-            console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-            sessionStorage.TIPO_POST_COMPETITIVO = resposta[0].postCompetitivo;
-          });
-        } else {
-          console.log("Nenhum valor encontrado ou ocorreu algum erro na API!");
-          alert("Nenhum valor encontrado ou ocorreu algum erro na API!");
-        }
-      })
-      .catch(function (error) {
-        console.log(
-          `Erro na captura dos dados para o gráfico: ${error.message}`
-        );
-        alert(`Erro na captura dos dados para o gráfico: ${error.message}`);
-      })
-
-    return false;
-  }
-
-  function pegarPostNoticia() {
-    fetch(`/posts/pegarPostNoticia/${idUsuario}`)
-    .then(function (response) {
-      if (response.ok) {
-        response.json().then(function (resposta) {
-          console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-          sessionStorage.TIPO_POST_NOTICIA = resposta[0].postNoticias;
-        });
-      } else {
-        console.log("Nenhum valor encontrado ou ocorreu algum erro na API!");
-        alert("Nenhum valor encontrado ou ocorreu algum erro na API!");
-      }
-    })
-    .catch(function (error) {
-        console.log(
-          `Erro na captura dos dados para o gráfico: ${error.message}`
-        );
-        alert(`Erro na captura dos dados para o gráfico: ${error.message}`);
-      })
-
-    return false;
-  }
+  
 
   function exibirGrafico() {
-    // GRÁFICO 1
-    // GRÁFICO 1
-    // GRÁFICO 1
-    var labels = ["SEUS POSTS", "TOTAL POSTS"];
-    console.log(sessionStorage.getItem("POSTS_USUARIO"));
-    console.log(sessionStorage.getItem("POSTS_TOTAIS"));
 
-    var data = [
-      sessionStorage.getItem("POSTS_USUARIO"),
-      sessionStorage.getItem("POSTS_TOTAIS"),
-    ];
-    const ctx = document.getElementById("myChart")
+    postsUsuario.innerHTML = sessionStorage.getItem("POSTS_USUARIO");
+    postsTotais.innerHTML = sessionStorage.getItem("POSTS_TOTAIS");
 
-    new Chart(ctx, {
-      type: "bar",
-      data: {
-        labels: labels,
-        datasets: [
-          {
-            label: "POSTS USUÁRIO X TOTAL",
-            data: data,
-            backgroundColor: ["#DCAA4A", "#30435B"],
-            borderWidth: 1,
-          },
-        ],
-      },
-      options: {
-        scales: {
-          y: {
-            beginAtZero: true,
-          },
-        },
-      },
-    });
-
-    // GRÁFICO 2
-    // GRÁFICO 2
-    // GRÁFICO 2
+    var totalCompetitivo = sessionStorage.getItem("TIPO_POST_COMPETITIVO");
+    var totalTeoria = sessionStorage.getItem("TIPO_POST_TEORIAS");
+    var totalNoticia = sessionStorage.getItem("TIPO_POST_NOTICIA");
 
     var labels2 = ["Competitivo", "Teorias", "Notícias"];
     var data2 = [
-      sessionStorage.getItem("TIPO_POST_COMPETITIVO"),
-      sessionStorage.getItem("TIPO_POST_TEORIAS"),
-      sessionStorage.getItem("TIPO_POST_NOTICIA")];
+      totalCompetitivo, totalTeoria, totalNoticia];
     const ctx2 = document.getElementById("myChart2");
-    
+
     new Chart(ctx2, {
       type: "pie",
       data: {

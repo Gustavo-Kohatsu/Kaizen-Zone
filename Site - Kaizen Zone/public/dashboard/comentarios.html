@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>COMENTÁRIOS | KaizenZone</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="../js/funcaoData.js"></script>
+  <link rel="shortcut icon" href="../assets/img/logo-kaizen/favicon.ico" type="image/x-icon" />
+  <link rel="stylesheet" href="../css/comentarios.css" />
+</head>
+
+<body style="margin-top: 10vh" onload="buscarPostSelecionado(), buscarComentarios()">
+  <header>
+    <div id="logo">
+      <a href="../index.html">
+        <img src="../assets/img/logo-kaizen/logo_kaizenzone.png" width="150px" />
+      </a>
+    </div>
+    <ul>
+      <a href="../index.html">
+        <li>PÁGINA INICIAL</li>
+      </a>
+      <a href="posts.html">
+        <li>POSTS</li>
+      </a>
+      <a href="forum.html">
+        <li>FÓRUM</li>
+      </a>
+      <a href="../login.html">
+        <li>SAIR</li>
+      </a>
+    </ul>
+  </header>
+
+  <div id="container">
+    <div id="forum">
+
+      <div class="generalPosts">
+
+      </div>
+
+
+
+      <section id="commentsGeneral">
+
+        <div class="resposta">
+          <textarea id="conteudo" maxlength="280"></textarea>
+        </div>
+        
+        <div id="botaoResponder">
+          <button onclick="responderPost()">RESPONDER</button>
+        </div>
+
+      </section>
+
+
+    </div>
+  </div>
+</body>
+
+</html>
+
+<script>
+  function buscarPostSelecionado() {
+    const idPost = sessionStorage.getItem('ID_POST')
+    fetch(`/comentarios/post/${idPost}`, { cache: "no-store" })
+      .then(function (response) {
+        if (response.ok) {
+          response.json().then(function (resposta) {
+            console.log('Dados do POST recebido: ');
+            console.log(resposta);
+
+            var postForum = document.querySelector('.generalPosts');
+
+            /* DIV DE TITULO */
+            var divTitle = document.createElement('div');
+            divTitle.setAttribute('class', 'titlePost');
+
+            var title = document.createElement('h1');
+            title.innerHTML = resposta[0].titulo;
+
+            divTitle.appendChild(title);
+
+            /* DIV DE CONTEÚDO */
+            var content = document.createElement('div');
+            content.setAttribute('class', 'contentPost');
+
+            var paragrafo = document.createElement('p');
+            paragrafo.innerHTML = resposta[0].conteudo;
+
+            content.appendChild(paragrafo);
+
+            /* DIV DE INFORMAÇÃO (Criador) */
+            var informacao = document.createElement('div');
+            informacao.setAttribute('class', 'infoPost');
+
+            var criador = document.createElement('span');
+            criador.innerHTML = resposta[0].username;
+            var dataPost = document.createElement('span');
+            dataPost.innerHTML = formatarData(resposta[0].dtPost);
+
+            informacao.appendChild(criador);
+            informacao.appendChild(dataPost);
+
+            postForum.appendChild(divTitle);
+            postForum.appendChild(content);
+            postForum.appendChild(informacao);
+          })
+        }
+      })
+  }
+
+  function buscarComentarios() {
+    const idPost = sessionStorage.getItem('ID_POST')
+    fetch(`/comentarios/comment/${idPost}`, {cache: "no-store"})
+    .then(function(resposta) {
+      if (resposta.ok) {
+        resposta.json().then(function(respostaComentarios) {
+          console.log(`Comentários recebidos: \n ${respostaComentarios}`);
+
+          for (let comentario of respostaComentarios) {
+            console.log(comentario);
+
+            var section = document.querySelector('#commentsGeneral');
+
+            var divComentario = document.createElement('div');
+            divComentario.setAttribute('id', 'comentario');
+
+            var divConteudo = document.createElement('div');
+            divConteudo.setAttribute('class', 'conteudo');
+
+            var paragrafo = document.createElement('p');
+            paragrafo.innerHTML = comentario.conteudo;
+            divConteudo.appendChild(paragrafo);
+            
+            divInfo = document.createElement('div');
+            divInfo.setAttribute('class', 'infoConteudo');
+
+            var criador = document.createElement('span');
+            var data = document.createElement('span');
+            criador.innerHTML = comentario.username;
+
+            data.innerHTML = formatarData(comentario.dtComentario);
+
+            divInfo.appendChild(criador);
+            divInfo.appendChild(data);
+
+
+            divComentario.appendChild(divConteudo);
+            divComentario.appendChild(divInfo);
+
+            section.appendChild(divComentario);
+          }
+        })
+      }
+    })
+  }
+
+  function responderPost() {
+    var comentario = {
+      conteudo: conteudo.value,
+      idCriadorComentario: sessionStorage.getItem('ID_USUARIO'),
+      idPost: sessionStorage.getItem('ID_POST')
+    }
+
+    if (comentario.conteudo == '' ||
+      comentario.idCriadorComentario == '' ||
+      comentario.idPost == '') {
+      alert('Campo de resposta está em branco!')
+    } else {
+      fetch('/comentarios/responderPost', {
+        method: 'POST',
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          comentarioJSON: comentario
+        })
+      }).then(function (resposta) {
+        console.log(resposta);
+
+        if (resposta.ok) {
+          alert('Post respondido com êxito!')
+          window.location = 'comentarios.html'
+        } else {
+          alert('Houve um erro ao tentar responder o post!')
+
+        }
+      }).catch(function (erro) {
+        console.log(`ERRO: ${erro}`)
+      })
+    }
+  }
+
+
+</script>

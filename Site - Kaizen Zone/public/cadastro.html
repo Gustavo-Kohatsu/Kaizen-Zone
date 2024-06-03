@@ -30,7 +30,9 @@
     </div>
 
     <div id="card">
-        <h1 style="margin-top: 20px; font-size: 50px; text-decoration: underline;">CADASTRO</h1>
+        <div id="titulo">
+            <h1 style="margin-top: 20px; font-size: 50px; text-decoration: underline;">CADASTRO</h1>
+        </div>
 
         <div id="inputs">
             <div class="div-inputs" id="username">
@@ -68,6 +70,8 @@
             </div>
             <div id="div_erros_login"></div>
         </div>
+    </div>
+
     </div>
 
     <footer>
@@ -142,15 +146,18 @@
                     console.log("resposta: ", resposta);
 
                     if (resposta.ok) {
+                        pegarID(emailVar, senhaVar);
+
+                        
                         cardErro.style.display = "block";
-
                         mensagem_erro.innerHTML =
-                            "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
+                            "Cadastro realizado com sucesso! Redirecionando para tela de Formulário...";
 
-                        alert('CADASTRO EXECUTADO COM SUCESSO! Redirecionando para tela de Login...');
+                        alert('CADASTRO EXECUTADO COM SUCESSO! Redirecionando para tela de Formulário...');
+
                         setTimeout(() => {
-                            window.location = "login.html";
-                        }, "1000");
+                            window.location = "formulario.html";
+                        }, "750");
 
                         finalizarAguardar();
                     } else {
@@ -171,21 +178,39 @@
 
     }
 
-    /*   function listar() {
-        fetch("/empresas/listar", {
-          method: "GET",
+    function pegarID(emailVar, senhaVar) {
+        fetch("/usuarios/pegarID", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                emailServer: emailVar,
+                senhaServer: senhaVar
+
+            })
+        }).then(function (resposta) {
+            console.log("ESTOU NO THEN DO pegar pegarID()!");
+
+            if (resposta.ok) {
+                console.log(resposta);
+
+                resposta.json().then(retornoDados => {
+                    console.log(retornoDados);
+                    sessionStorage.ID_USUARIO = retornoDados[0].id;
+
+                    alert('RETORNO DA IDENTIFICAÇÃO DO USUÁRIO COM SUCESSO!!')
+                });
+            } else {
+                resposta.text().then(erro => {
+                    console.error(erro);
+
+                });
+            }
+        }).catch(function (erro) {
+            console.log(erro);
         })
-          .then(function (resposta) {
-            resposta.json().then((empresas) => {
-              empresas.forEach((empresa) => {
-                listaEmpresas.innerHTML += `<option value='${empresa.id}'>${empresa.cnpj}</option>`;
-              });
-            });
-          })
-          .catch(function (resposta) {
-            console.log(`#ERRO: ${resposta}`);
-          });
-      } */
+    }
 
     function sumirMensagem() {
         cardErro.style.display = "none";

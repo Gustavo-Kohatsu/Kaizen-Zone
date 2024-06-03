@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+    <title>ESTATÍSTICAS | Kaizen Zone</title>
+    <link rel="stylesheet" href="css/estatisticas.css">
+    <link rel="shortcut icon" href="assets/img/logo-kaizen/favicon.ico" type="image/x-icon">
+</head>
+
+<body onload="atualizarPagina()">
+    <header id="header">
+        <div id="logo">
+            <a href="index.html">
+                <img src="assets/img/logo-kaizen/logo_kaizenzone.png" alt="Logo Kaizen Zone" width="175px" />
+            </a>
+        </div>
+
+        <nav>
+
+            <ul>
+                <a href="index.html">
+                    <li class="botoesHeader" id="botaoPaginaInicial">PÁGINA INICIAL</li>
+                </a>
+
+                <a href="statistics.html">
+                    <li class="botoesHeader" id="botaoSessaoEstatisticas">ESTATÍSTICAS</li>
+                </a>
+            </ul>
+
+        </nav>
+
+        <div id="facaParte">
+
+            <a href="cadastro.html">
+                <img src="assets/img/user (white).png" width="42.5px" height="42.5px" />
+            </a>
+
+            <a href="cadastro.html" id="textoFacaParte">
+                <button class="button">FAÇA PARTE</button>
+            </a>
+
+        </div>
+
+    </header>
+
+
+    <div id="container">
+
+        <div id="titulo">
+            <h1>ESTATÍSTICAS GERAIS DOS USUÁRIOS</h1>
+        </div>
+        <div id="graficos">
+
+
+            <div id="contentDash">
+                <div id="colunaUm">
+                    <div id="content1" class="graficoBarra">
+                        <h1>FUNÇÃO DOS JOGADORES EM PARTIDAS COMPETITIVAS</h1>
+                        <div class="graficos">
+                            <canvas id="myChart"></canvas>
+                        </div>
+                    </div>
+                    <div id="content2" class="graficoBarra">
+                        <h1>HORAS DIÁRIAS DEDICADAS AO FORTNITE</h1>
+                        <div class="graficos">
+                            <canvas id="myChart2"></canvas>
+                        </div>
+                    </div>
+
+                </div>
+      
+                <div id="colunaDois">
+                    <div id="content3" class="graficoBarra">
+                        <h1>MODOS DE JOGOS FAVORITOS NO FORTNITE</h1>
+                        <div class="graficos">
+                            <canvas id="myChart3"></canvas>
+                        </div>
+                    </div>
+                    <div id="content4" class="graficoBarra">
+                        <h1>NÍVEL ATUAL DOS JOGADORES NO PASSE DE BATALHA</h1>
+                        <div class="graficos">
+                            <canvas id="myChart4"></canvas>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</body>
+
+</html>
+
+<script>
+    /* total_resp1 */
+    pegarDadosPergunta1();
+    pegarDadosPergunta2();
+    pegarDadosPergunta3();
+    pegarDadosPergunta4();
+
+    function pegarDadosPergunta4() {
+        fetch(`/usuarios/pegarDadosPergunta4`)
+        .then(function (resposta) {
+            if (resposta.ok) {
+                resposta.json().then(function (response) {
+                    console.log(`Dados recebidos: ${JSON.stringify(response)}`);
+                    sessionStorage.RESPOSTA_16 = 0;
+                    sessionStorage.RESPOSTA_17 = 0;
+                    sessionStorage.RESPOSTA_18 = 0;
+                    sessionStorage.RESPOSTA_19 = 0;
+                    sessionStorage.RESPOSTA_20 = 0;
+
+                    for (let i = 0; i < response.length; i++) {
+
+                        if (response[i].fkAnswers == 16) {
+                            sessionStorage.RESPOSTA_16 = response[i].total_perg4;
+                            
+                        } else if (response[i].fkAnswers == 17) {
+                            sessionStorage.RESPOSTA_17 = response[i].total_perg4;
+
+                        } else if (response[i].fkAnswers == 18) {
+                            sessionStorage.RESPOSTA_18 = response[i].total_perg4;
+                            
+                        } else if (response[i].fkAnswers == 19) {
+                            sessionStorage.RESPOSTA_19 = response[i].total_perg4;
+                            
+                        } else if (response[i].fkAnswers == 20) {
+                            sessionStorage.RESPOSTA_20 = response[i].total_perg4;
+                            
+                        }
+                    
+                    }
+
+                })
+            }
+        })
+    }
+
+    function pegarDadosPergunta3() {
+        fetch(`/usuarios/pegarDadosPergunta3`)
+        .then(function (resposta) {
+            if (resposta.ok) {
+                resposta.json().then(function (response) {
+                    console.log(`Dados recebidos: ${JSON.stringify(response)}`);
+                    sessionStorage.RESPOSTA_11 = 0;
+                    sessionStorage.RESPOSTA_12 = 0;
+                    sessionStorage.RESPOSTA_13 = 0;
+                    sessionStorage.RESPOSTA_14 = 0;
+                    sessionStorage.RESPOSTA_15 = 0;
+
+                    for (let i = 0; i < response.length; i++) {
+
+                        if (response[i].fkAnswers == 11) {
+                            sessionStorage.RESPOSTA_11 = response[i].total_perg3;
+                            
+                        } else if (response[i].fkAnswers == 12) {
+                            sessionStorage.RESPOSTA_12 = response[i].total_perg3;
+
+                        } else if (response[i].fkAnswers == 13) {
+                            sessionStorage.RESPOSTA_13 = response[i].total_perg3;
+                            
+                        } else if (response[i].fkAnswers == 14) {
+                            sessionStorage.RESPOSTA_14 = response[i].total_perg3;
+                            
+                        } else if (response[i].fkAnswers == 15) {
+                            sessionStorage.RESPOSTA_15 = response[i].total_perg3;
+                            
+                        }
+                    
+                    }
+
+                })
+            }
+        })
+    }
+    
+    function pegarDadosPergunta2() {
+        fetch(`/usuarios/pegarDadosPergunta2`)
+        .then(function (resposta) {
+            if (resposta.ok) {
+                resposta.json().then(function (response) {
+                    console.log(`Dados recebidos: ${JSON.stringify(response)}`);
+                    sessionStorage.RESPOSTA_6 = 0;
+                    sessionStorage.RESPOSTA_7 = 0;
+                    sessionStorage.RESPOSTA_8 = 0;
+                    sessionStorage.RESPOSTA_9 = 0;
+                    sessionStorage.RESPOSTA_10 = 0;
+
+                    for (let i = 0; i < response.length; i++) {
+
+                        if (response[i].fkAnswers == 6) {
+                            sessionStorage.RESPOSTA_6 = response[i].total_perg2;
+                            
+                        } else if (response[i].fkAnswers == 7) {
+                            sessionStorage.RESPOSTA_7 = response[i].total_perg2;
+
+                        } else if (response[i].fkAnswers == 8) {
+                            sessionStorage.RESPOSTA_8 = response[i].total_perg2;
+                            
+                        } else if (response[i].fkAnswers == 9) {
+                            sessionStorage.RESPOSTA_9 = response[i].total_perg2;
+                            
+                        } else if (response[i].fkAnswers == 10) {
+                            sessionStorage.RESPOSTA_10 = response[i].total_perg2;
+                            
+                        }
+                    
+                    }
+
+                })
+            }
+        })
+    }
+
+    function pegarDadosPergunta1() {
+        fetch(`/usuarios/pegarDadosPergunta1`)
+        .then(function (resposta) {
+            if (resposta.ok) {
+                resposta.json().then(function (response) {
+                    console.log(`Dados recebidos: ${JSON.stringify(response)}`);
+                    sessionStorage.RESPOSTA_1 = 0;
+                    sessionStorage.RESPOSTA_2 = 0;
+                    sessionStorage.RESPOSTA_3 = 0;
+                    sessionStorage.RESPOSTA_4 = 0;
+                    sessionStorage.RESPOSTA_5 = 0;
+
+                    for (let i = 0; i < response.length; i++) {
+
+                        if (response[i].fkAnswers == 1) {
+                            sessionStorage.RESPOSTA_1 = response[i].total_perg1;
+                            
+                        } else if (response[i].fkAnswers == 2) {
+                            sessionStorage.RESPOSTA_2 = response[i].total_perg1;
+
+                        } else if (response[i].fkAnswers == 3) {
+                            sessionStorage.RESPOSTA_3 = response[i].total_perg1;
+                            
+                        } else if (response[i].fkAnswers == 4) {
+                            sessionStorage.RESPOSTA_4 = response[i].total_perg1;
+                            
+                        } else if (response[i].fkAnswers == 5) {
+                            sessionStorage.RESPOSTA_5 = response[i].total_perg1;
+                            
+                        }
+                    
+                    }
+
+                })
+            }
+        })
+    }
+
+    function atualizarPagina() {
+        exibirGrafico()
+
+    }
+    function exibirGrafico() {
+        // GRÁFICO 1
+        // GRÁFICO 1
+        // GRÁFICO 1
+        var labels = ['NÃO JOGA', 'IGL', 'FRAGGER', 'SUPORTE', 'PATHMAKER'];
+
+
+        var data = [
+            sessionStorage.getItem("RESPOSTA_1"), 
+            sessionStorage.getItem("RESPOSTA_2"), 
+            sessionStorage.getItem("RESPOSTA_3"), 
+            sessionStorage.getItem("RESPOSTA_4"), 
+            sessionStorage.getItem("RESPOSTA_5")];
+        const ctx = document.getElementById("myChart")
+
+        new Chart(ctx, {
+            type: "bar",
+            data: {
+                labels: labels,
+                datasets: [
+                    {
+                        label: "FUNÇÃO JOGADORES",
+                        data: data,
+                        backgroundColor: ["#1F1F23", "#608AB0", "#B31438", "#DCAA4A", "#30435B"],
+                        borderWidth: 1,
+                    },
+                ],
+            }
+        });
+
+        // GRÁFICO 2
+        // GRÁFICO 2
+        // GRÁFICO 2
+
+        var labels2 = ["Até 1 hora", "1 - 2 horas", "2 - 4 horas", "4 - 6 horas", "Mais de 6 horas"];
+        var data2 = [
+            sessionStorage.getItem("RESPOSTA_6"), 
+            sessionStorage.getItem("RESPOSTA_7"), 
+            sessionStorage.getItem("RESPOSTA_8"), 
+            sessionStorage.getItem("RESPOSTA_9"), 
+            sessionStorage.getItem("RESPOSTA_10")];
+        const ctx2 = document.getElementById("myChart2");
+
+        new Chart(ctx2, {
+            type: "bar",
+            data: {
+                labels: labels2,
+                datasets: [
+                    {
+                        label: 'HORAS',
+                        data: data2,
+                        backgroundColor: ["#1F1F23", "#608AB0", "#B31438", "#DCAA4A", "#30435B"],
+                        borderWidth: 1,
+                    },
+                ],
+            }
+        });
+
+        // GRÁFICO 3
+        // GRÁFICO 3
+        // GRÁFICO 3
+        var labels3 = ['Solo / Duplas', 'Trio / Esquadrão', 'Arenas Competitivas', 'Salve o Mundo', 'Modo Criativo'];
+
+
+        var data3 = [
+            sessionStorage.getItem("RESPOSTA_11"), 
+            sessionStorage.getItem("RESPOSTA_12"), 
+            sessionStorage.getItem("RESPOSTA_13"), 
+            sessionStorage.getItem("RESPOSTA_14"), 
+            sessionStorage.getItem("RESPOSTA_15")
+        ];
+        const ctx3 = document.getElementById("myChart3")
+
+        new Chart(ctx3, {
+            type: "bar",
+            data: {
+                labels: labels3,
+                datasets: [
+                    {
+                        label: "MODO DE JOGO PREFERIDO",
+                        data: data3,
+                        backgroundColor: ["#1F1F23", "#608AB0", "#B31438", "#DCAA4A", "#30435B"],
+                        borderWidth: 1,
+                    },
+                ],
+            }
+        });
+
+        // GRÁFICO 4
+        // GRÁFICO 4
+        // GRÁFICO 4
+        var labels4 = ['Sem Passe de Batalha', 'Nível 1 - 40', 'Nível 41 - 80', 'Nível 81 - 100', 'Acima do Nível 100'];
+
+
+        var data4 = [
+            sessionStorage.getItem("RESPOSTA_16"), 
+            sessionStorage.getItem("RESPOSTA_17"), 
+            sessionStorage.getItem("RESPOSTA_18"), 
+            sessionStorage.getItem("RESPOSTA_19"), 
+            sessionStorage.getItem("RESPOSTA_20")
+        ];
+        const ctx4 = document.getElementById("myChart4")
+
+        new Chart(ctx4, {
+            type: "bar",
+            data: {
+                labels: labels4,
+                datasets: [
+                    {
+                        label: "NÍVEL ATUAL - PASSE DE BATALHA",
+                        data: data4,
+                        backgroundColor: ["#1F1F23", "#608AB0", "#B31438", "#DCAA4A", "#30435B"],
+                        borderWidth: 1,
+                    },
+                ],
+            }
+        });
+    }
+</script>

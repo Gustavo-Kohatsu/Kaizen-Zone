@@ -20,19 +20,6 @@ function autenticar(req, res) {
                         console.log(resultadoAutenticar);
 
                         res.json(resultadoAutenticar);
-                        /* aquarioModel.buscarAquariosPorEmpresa(resultadoAutenticar[0].empresaId)
-                            .then((resultadoAquarios) => {
-                                if (resultadoAquarios.length > 0) {
-                                    res.json({
-                                        id: resultadoAutenticar[0].id,
-                                        nome: resultadoAutenticar[0].nome,
-                                        senha: resultadoAutenticar[0].senha,
-                                        email: resultadoAutenticar[0].email,
-                                    });
-                                } else {
-                                    res.status(204).json({ aquarios: [] });
-                                }
-                            }) */
                     } else if (resultadoAutenticar.length == 0) {
                         res.status(403).send("Email e/ou senha inválido(s)");
                     } else {
@@ -63,10 +50,10 @@ function cadastrar(req, res) {
 
     } else if (email == undefined) {
         res.status(400).send("Seu email está undefined!");
-        
+
     } else if (dtNascimento == undefined) {
         res.status(400).send("Sua data de nascimento está undefined!");
-        
+
     } else if (senha == undefined) {
         res.status(400).send("Sua senha está undefined!");
     } else {
@@ -91,7 +78,110 @@ function cadastrar(req, res) {
     }
 }
 
+function pegarID(req, res) {
+    var email = req.body.emailServer;
+    var senha = req.body.senhaServer;
+
+    if (email == undefined) {
+        res.status(400).send("Seu email está indefinido!");
+    } else if (senha == undefined) {
+        res.status(400).send("Sua senha está indefinida!");
+    } else {
+        usuarioModel.pegarID(email, senha)
+            .then(
+                function (resultado) {
+                    console.log(`\nResultados encontrados: ${resultado.length}`);
+                    console.log(`Resultados: ${JSON.stringify(resultado)}`);
+
+                    if (resultado.length == 1) {
+                        console.log(resultado);
+
+                        res.json(resultado);
+                    } else if (resultado.length == 0) {
+                        res.status(403).send("ERRO! resultado.length é igual a 0");
+                    } else {
+                        res.status(403).send("HOUVE ALGUM ERRO no usuarioController.js - Na função pegarID() !");
+                    }
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log("\nHouve um erro realizar a query! Erro: ", erro.sqlMessage);
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+    }
+
+}
+
+function pegarDadosPergunta1(req, res) {
+    usuarioModel.pegarDadosPergunta1()
+    .then(function (resultado) {
+            if (resultado.length > 0) {
+                res.status(200).json(resultado);
+            } else {
+                res.status(204).send('Nenhum resultado encontrado!');
+            }
+        }).catch(function (error) {
+            console.log(error);
+            console.log(`Houve um erro ao buscar o que foi solicitado! ${error.sqlMessage}`);
+            res.status(500).json(error.sqlMessage)
+        })
+}
+
+function pegarDadosPergunta2(req, res) {
+    usuarioModel.pegarDadosPergunta2()
+    .then(function (resultado) {
+            if (resultado.length > 0) {
+                res.status(200).json(resultado);
+            } else {
+                res.status(204).send('Nenhum resultado encontrado!');
+            }
+        }).catch(function (error) {
+            console.log(error);
+            console.log(`Houve um erro ao buscar o que foi solicitado! ${error.sqlMessage}`);
+            res.status(500).json(error.sqlMessage)
+        })
+}
+
+function pegarDadosPergunta3(req, res) {
+    usuarioModel.pegarDadosPergunta3()
+    .then(function (resultado) {
+            if (resultado.length > 0) {
+                res.status(200).json(resultado);
+            } else {
+                res.status(204).send('Nenhum resultado encontrado!');
+            }
+        }).catch(function (error) {
+            console.log(error);
+            console.log(`Houve um erro ao buscar o que foi solicitado! ${error.sqlMessage}`);
+            res.status(500).json(error.sqlMessage)
+        })
+}
+
+function pegarDadosPergunta4(req, res) {
+    usuarioModel.pegarDadosPergunta4()
+    .then(function (resultado) {
+            if (resultado.length > 0) {
+                res.status(200).json(resultado);
+            } else {
+                res.status(204).send('Nenhum resultado encontrado!');
+            }
+        }).catch(function (error) {
+            console.log(error);
+            console.log(`Houve um erro ao buscar o que foi solicitado! ${error.sqlMessage}`);
+            res.status(500).json(error.sqlMessage)
+        })
+}
+
+
+
 module.exports = {
     autenticar,
-    cadastrar
+    cadastrar,
+    pegarID,
+    pegarDadosPergunta1,
+    pegarDadosPergunta2,
+    pegarDadosPergunta3,
+    pegarDadosPergunta4
 }

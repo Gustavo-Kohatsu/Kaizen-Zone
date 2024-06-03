@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>FÓRUM | KaizenZone</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script src="../js/funcaoData.js"></script>
     <link
       rel="shortcut icon"
       href="../assets/img/logo-kaizen/favicon.ico"
@@ -12,7 +14,7 @@
     />
     <link rel="stylesheet" href="../css/forum.css" />
   </head>
-  <body style="margin-top: 10vh">
+  <body style="margin-top: 10vh" onload="listarPosts()">
     <header>
       <div id="logo">
         <a href="../index.html">
@@ -40,75 +42,105 @@
 
     <div id="container">
       <div id="forum">
+        
         <div id="titleForum">
           <h1>FÓRUM KAIZEN ZONE</h1>
         </div>
 
-        <div class="generalPosts">
-          <div class="titlePost">
-            <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit.</h1>
-          </div>
-
-          <div class="contentPost">
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Laudantium quibusdam ipsam deleniti corrupti? Sunt, dolores a
-              repudiandae voluptatum autem harum culpa animi nam, dolore iure
-              tempore aut sequi temporibus veritatis? Lorem ipsum dolor sit amet
-              consectetur adipisicing elit. Animi, a provident mollitia saepe
-              cumque laborum ullam incidunt aliquam atque nihil. In dolor
-              voluptatum quis cumque expedita eos nam asperiores pariatur. Lorem
-              ipsum dolor, sit amet consectetur adipisicing elit. Nam cum
-              numquam necessitatibus enim commodi! Dicta nostrum asperiores
-              expedita, consequuntur eaque accusantium aliquid similique, quis
-              illo veniam perferendis eum sequi corporis! Lorem ipsum dolor sit
-              amet consectetur, adipisicing elit. Doloribus necessitatibus
-              vitae, non molestiae saepe quam deleniti perferendis iure
-              praesentium velit tempore natus rem, qui exercitationem sequi,
-              perspiciatis esse dolore. Necessitatibus.
-            </p>
-          </div>
-
-          <div class="infoPost">
-            <span>GUSTAVO KOHATSU</span>
-            <span>30/05/2024 - 17:47:42</span>
-          </div>
-        </div>
-
-        <div class="generalPosts">
-          <div class="titlePost">
-            <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit.</h1>
-          </div>
-
-          <div class="contentPost">
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Laudantium quibusdam ipsam deleniti corrupti? Sunt, dolores a
-              repudiandae voluptatum autem harum culpa animi nam, dolore iure
-              tempore aut sequi temporibus veritatis? Lorem ipsum dolor sit amet
-              consectetur adipisicing elit. Animi, a provident mollitia saepe
-              cumque laborum ullam incidunt aliquam atque nihil. In dolor
-              voluptatum quis cumque expedita eos nam asperiores pariatur. Lorem
-              ipsum dolor, sit amet consectetur adipisicing elit. Nam cum
-              numquam necessitatibus enim commodi! Dicta nostrum asperiores
-              expedita, consequuntur eaque accusantium aliquid similique, quis
-              illo veniam perferendis eum sequi corporis! Lorem ipsum dolor sit
-              amet consectetur, adipisicing elit. Doloribus necessitatibus
-              vitae, non molestiae saepe quam deleniti perferendis iure
-              praesentium velit tempore natus rem, qui exercitationem sequi,
-              perspiciatis esse dolore. Necessitatibus.
-            </p>
-          </div>
-
-          <div class="infoPost">
-            <span>GUSTAVO KOHATSU</span>
-            <span>30/05/2024 - 17:47:42</span>
-          </div>
-        </div>
-        
-        
       </div>
     </div>
   </body>
 </html>
+
+<script>
+
+  function listarPosts() {
+    fetch('/forum/listarPosts', {cache: "no-store"})
+    .then(function (response) {
+      if (response.ok) {
+        response.json().then(function (resposta) {
+          const postagens = resposta;
+
+          console.log(resposta);
+          console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+
+          for (let post of postagens) {
+
+            var postHref = document.createElement('a');
+            
+            postHref.addEventListener('click', () => {
+              sessionStorage.ID_POST = post.id
+
+            })
+
+            postHref.setAttribute('value', post.id);
+            postHref.setAttribute('href', `comentarios.html`);
+            postHref.setAttribute('class', 'generalPosts');
+
+            document.querySelector('#forum').appendChild(postHref);
+
+            /* CRIANDO A DIV DE TITULO */
+
+            var postDiv = document.createElement('div');
+            postDiv.setAttribute('class', 'titlePost');
+            var tagTitle = document.createElement('h1');
+            tagTitle.innerHTML = post.titulo;
+
+            postDiv.appendChild(tagTitle);
+            postHref.appendChild(postDiv);
+            
+            /* CRIANDO A DIV DE PARAGRÁFO */
+            var postContent = document.createElement('div');
+            postContent.setAttribute('class', 'contentPost');
+            var tagParagrafo = document.createElement('p');
+            tagParagrafo.setAttribute('class', 'paragrafoConteudo');
+
+            
+            tagParagrafo.innerHTML = post.conteudo;
+
+            postContent.appendChild(tagParagrafo);
+            postHref.appendChild(postContent);
+
+            /* CRIANDO A DIV DE INFORMAÇÃO */
+            var infoDiv = document.createElement('div');
+            infoDiv.setAttribute('class', 'infoPost');
+
+            var criadorPost = document.createElement('span'); 
+            var dtPost = document.createElement('span'); 
+            
+            criadorPost.innerHTML = `Criado por ${post.username}`;
+            dtPost.innerHTML = formatarData(post.dtPost);
+
+            infoDiv.appendChild(criadorPost);
+            infoDiv.appendChild(dtPost);
+            postHref.appendChild(infoDiv);
+          }
+        })
+
+      } else {
+        alert('Algum erro na API ou nenhum dado encontrado...')
+
+      }
+    }).catch(function (error) {
+      console.log(`Erro na obtenção dos dados: ${error.message}`)
+    })
+  }
+
+  function formatarData(dtPost) {
+    /* A DATA ESTÁ SENDO ENVIADA COM VALORES IRREGULARES */
+
+    // Separar por partes da data original
+    var dia = dtPost.substring(8, 10);
+    var mes = dtPost.substring(5, 7);
+    var ano = dtPost.substring(0, 4);
+    var hora = dtPost.substring(11, 13) - 3; // COLOCAR "- 3", POR CAUSA DO FUSO HORÁRIO QUE NÃO PEGA A HORA do fuso horário do Brasil
+    var minuto = dtPost.substring(14, 16);
+    var segundo = dtPost.substring(17, 19);
+
+    // Formatando a data no formato desejado
+    var dataFormatada = dia + '/' + mes + '/' + ano + ' - ' + hora + ':' + minuto + ':' + segundo;
+
+    return dataFormatada;
+  }
+</script>
 
