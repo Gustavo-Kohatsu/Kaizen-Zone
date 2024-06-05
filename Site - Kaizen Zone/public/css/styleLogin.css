@@ -299,30 +299,88 @@ CARDS DE ERROS!
 */
 
 
-#loading-gif {
-  display: none;
-}
-
 #cardErro {
   display: none;
-
-  
-  border-bottom-left-radius: 20px;
-  background-color: white;
-  
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  
-  position: absolute;
+  position: fixed;
+  z-index: 10;
   top: 0;
-  right: 0;
+  left: 0;
   
+  width: 100%;
+  height: 100%;
+  
+  overflow: auto;
+  background-color: #676767a9;
 }
 
 #mensagem_erro {
-  display: none;
-  color: #264C76;
+  background-color: rgb(32, 60, 93, 0.6);
+  backdrop-filter: blur(20px);
+  color: #f0e3e3;
+  
+  border-radius: 20px;
+  margin: 15% auto;
   padding: 20px;
-  font-size: 20pt;
+  
+  width: 30%;
+  font-display: flex;
+  
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  
+  margin-top: 23rem;
+  font-size: 2em;
+
+}
+
+.contentModal {
+  background-color: rgb(32, 60, 93, 0.6);
+  backdrop-filter: blur(20px);
+  color: #f0e3e3;
+
+  border-radius: 20px;
+  margin: 15% auto;
+  padding: 20px;
+
+  width: 30%;
+  font-display: flex;
+
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  
+  margin-top: 23rem;
+  font-size: 2em;
+  
+}
+
+.modalErro {
+  display: none;
+  position: fixed;
+  z-index: 10;
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 100%;
+  
+  overflow: auto;
+  background-color: #676767a9;
+
+}
+
+.modal2 {
+  display: none;
+  position: fixed;
+  z-index: 10;
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 100%;
+
+  overflow: auto;
+  background-color: #676767a9;
+
 }

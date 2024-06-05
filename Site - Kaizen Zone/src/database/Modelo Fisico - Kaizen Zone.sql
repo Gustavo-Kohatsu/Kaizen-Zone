@@ -25,7 +25,7 @@ dtPost DATETIME DEFAULT CURRENT_TIMESTAMP,
 fkCriadorPost INT,
 
 PRIMARY KEY (id),
-FOREIGN KEY (fkCriadorPost) REFERENCES Usuario (id)
+FOREIGN KEY (fkCriadorPost) REFERENCES usuario (id)
 );
 
 CREATE TABLE comentarios (
@@ -36,37 +36,37 @@ fkPost INT,
 fkCriadorComentario INT,
 
 PRIMARY KEY (id),
-FOREIGN KEY (fkPost) REFERENCES Post (id),
-FOREIGN KEY (fkCriadorComentario) REFERENCES Usuario (id)
+FOREIGN KEY (fkPost) REFERENCES post (id),
+FOREIGN KEY (fkCriadorComentario) REFERENCES usuario (id)
 );
 
-CREATE TABLE questions (
+CREATE TABLE perguntas (
 id INT AUTO_INCREMENT,
 pergunta VARCHAR(100) NOT NULL,
 
 PRIMARY KEY (id)
 );
 
-CREATE TABLE answers (
+CREATE TABLE alternativas (
 id INT AUTO_INCREMENT,
 resposta VARCHAR(45) NOT NULL,
-fkQuestions INT NOT NULL,
+fkPerguntas INT NOT NULL,
 
 PRIMARY KEY (id),
-FOREIGN KEY (fKQuestions) REFERENCES questions (id)
+FOREIGN KEY (fKPerguntas) REFERENCES perguntas (id)
 
 );
 
-CREATE TABLE answersUsuario (
+CREATE TABLE alternativa_escolhida (
 id INT AUTO_INCREMENT,
 fkUsuario INT NOT NULL,
-fkQuestions INT NOT NULL,
-fkAnswers INT NOT NULL,
+fkPerguntas INT NOT NULL,
+fkAlternativas INT NOT NULL,
 
 PRIMARY KEY (id),
 FOREIGN KEY (fkUsuario) REFERENCES usuario (id),
-FOREIGN KEY (fkQuestions) REFERENCES questions (id),
-FOREIGN KEY (fkAnswers) REFERENCES answers (id)
+FOREIGN KEY (fKPerguntas) REFERENCES perguntas (id),
+FOREIGN KEY (fkAlternativas) REFERENCES alternativas (id)
 
 );
 
@@ -86,7 +86,7 @@ insert into post
 VALUES
 ('FORTNITE FNCS CHAMPIONSHIP ', 'Anunciaram FNCS Championship!! A premiação será em torno de 1 milhão e será no modo duplas, finalmente chegou!!', 'noticias', 1);
 
-INSERT INTO questions
+INSERT INTO perguntas
 (pergunta)
 VALUES
 ('Qual sua função dentro do jogo em partidas competitivas?'),
@@ -94,8 +94,8 @@ VALUES
 ('Qual é o seu modo de jogo favorito no Fortnite?'),
 ('Qual é o seu nível atual no Passe de Batalha?');
 
-INSERT INTO answers
-(resposta, fkQuestions)
+INSERT INTO alternativas
+(resposta, fKPerguntas)
 VALUES
 ('Não jogo competitivamente', 1),
 ('IGL (In-Game Leader)', 1),
@@ -121,8 +121,8 @@ VALUES
 ('Nível 81 - 100', 4),
 ('Acima do Nível 100', 4);
 
-INSERT INTO answersUsuario
-(fkUsuario, fkAnswers, fkQuestions)
+INSERT INTO alternativa_escolhida
+(fkUsuario, fkAlternativas, fKPerguntas)
 VALUES
 (1, 1, 1),
 (1, 6, 2),

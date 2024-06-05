@@ -4,8 +4,8 @@ function cadastrarResposta(dadosForm) {
     console.log('ESTOU NO formModel.js | Na função cadastrarResposta()');
 
     var query = `
-    INSERT INTO answersUsuario
-    (fkUsuario, fkQuestions, fkAnswers)
+    INSERT INTO alternativa_escolhida
+    (fkUsuario, fKPerguntas, fkAlternativas)
     VALUES
     (${dadosForm.fkUsuario}, ${dadosForm.fkQuestions}, ${dadosForm.fkAnswers});
     `;

@@ -306,10 +306,9 @@ CARD ERROS EM GERAL!!
 #cardErro {
   display: none;
 
-  background-color: white;
-  
+  margin: 20px;
   border-bottom-left-radius: 20px;
-
+  
   display: flex;
   align-items: center;
   justify-content: center;
@@ -317,13 +316,28 @@ CARD ERROS EM GERAL!!
   position: absolute;
   top: 0;
   right: 0;
-
+  
 }
 
 #mensagem_erro {
   display: none;
-
+  background-color: white;
+  
   color: #264C76;
   padding: 20px;
   font-size: 20pt;
+  animation: aparecerMensagemValidacao 1s ease-in-out;
+}
+
+@keyframes aparecerMensagemValidacao {
+  0% {
+    opacity: 0;
+    transform: translateY(-100%);
+    
+  } 100% {
+    opacity: 1;
+    transform: translateY(0px);
+    
+  }
+
 }
