@@ -120,6 +120,7 @@ a {
 #botaoSessaoEstatisticas:hover {
   border: 3px solid var(--myWhite);
   border-color: var(--myWhite);
+  box-shadow: 3px 3px 10px #fff;
 
 }
 
@@ -138,6 +139,7 @@ a {
   display: flex;
   align-items: center;
   justify-content: center;
+  border: 3px solid transparent;
 
   cursor: pointer;
   color: #ffff;
