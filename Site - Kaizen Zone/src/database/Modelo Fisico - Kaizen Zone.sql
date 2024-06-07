@@ -80,11 +80,17 @@ VALUES
 ('Edson Tadashi', '123', 'tna.comercial.ltda@gmail.com', '1966-10-16'),
 ('Ronaldo', '123', 'ronaldohiga@gmail.com', '1980-10-20');
 
-
 insert into post
 (titulo, conteudo, tipo, fkCriadorPost)
 VALUES
-('FORTNITE FNCS CHAMPIONSHIP ', 'Anunciaram FNCS Championship!! A premiação será em torno de 1 milhão e será no modo duplas, finalmente chegou!!', 'noticias', 1);
+('FORTNITE FNCS CHAMPIONSHIP ', 'Anunciaram FNCS Championship!! A premiação será em torno de 1 milhão e será no modo duplas, finalmente chegou!!', 'noticias', 1),
+('COMPREI UM FUSCA AMARELO CANÁRIO!', 'BRINCADEIRA, HAHA!! APENAS COMPREI O PASSE DE BATALHA, ESTOU MUITO FELIZ!', 'noticias', 3);
+
+INSERT INTO comentarios
+(conteudo, fkPost, fkCriadorComentario)
+VALUES
+('Estou muito empolgado! Acredito que vou conseguir pegar pelo menos um top 10 nesse campeonato! Vou me esforçar muito!', 1, 6),
+('Meu Deus! O que tem haver uma coisa com a outra?! Mas que bom, o passe de batalha tem diversos itens diversificados...', 2, 5);
 
 INSERT INTO perguntas
 (pergunta)
